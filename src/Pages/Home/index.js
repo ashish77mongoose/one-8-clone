@@ -14,6 +14,7 @@ const Home = () => {
   const { mode, setMode } = useContext(modeContext);
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
+    gsap.fromTo('.chevrondown', { y: -8 }, { y: 2, repeat: -1, yoyo: true, duration: 1 });
     let ctx;
     mm.add("(min-width: 800px)", () => {
       ctx = gsap.context((self) => {
@@ -21,7 +22,7 @@ const Home = () => {
         const video = document.querySelector('.video video');
         let textStrokeEffect = gsap.utils.toArray('.text-stroke-effect');
         let textwithOutStroke = gsap.utils.toArray('.text-without-stroke');
-        gsap.fromTo('.chevrondown', { y: -8 }, { y: 2, repeat: -1, yoyo: true, duration: 1 });
+        
         gsap.fromTo('.video-btn img', { rotate: 0 }, { rotate: 360, repeat: -1, duration: 15 });
         videBtnTl.to(textStrokeEffect[0], { y: "-100vh" }, 'upper')
           .to(textwithOutStroke[0], { y: "-100vh" }, 'upper')
@@ -132,22 +133,22 @@ const Home = () => {
     <>
       <div className='relative overflow-hidden home'>
 
-        <header className='flex items-center flex-col gap-2 relative min-h-screen justify-center  overflow-hidden pt-20 z-[24]'>
+        <header className='flex items-center flex-col gap-2 relative lg:min-h-screen justify-center  overflow-hidden pt-20 z-[24]'>
 
           <div className="container flex flex-col gap-2 relative z-[3] ">
-            <div className='relative flex gap-24 w-full justify-center'>
-              <div className='font-auxbold text-theme-red dark:text-theme-main uppercase text-9xl '>Web</div>
-              <div className='font-auxbold text-theme-red dark:text-theme-main uppercase text-9xl '>Designer</div>
-              <img className='absolute z-[-1] left-[10%] -top-[100px] max-w-[500px] filter ' src="/img/banner_vk.png" alt="banner_vk" />
+            <div className='relative flex lg:gap-24 w-full justify-center lg:flex-row flex-col gap-2'>
+              <div className='font-auxbold text-theme-red dark:text-theme-main uppercase text-5xl lg:text-9xl '>Web</div>
+              <div className='font-auxbold text-theme-red dark:text-theme-main uppercase text-5xl lg:text-9xl '>Designer</div>
+              <img className='lg:absolute z-[-1] lg:left-[10%] lg:-top-[100px] max-w-[260px] lg:max-w-[500px] filter ' src="/img/banner_vk.png" alt="banner_vk" />
             </div>
-            <div className='  w-full max-w-[685px] ml-auto'>
-              <p className='mb-8 text-3xl leading-10 font-dmsans dark:text-white text-black/80'>
+            <div className='w-full lg:max-w-[685px] lg:ml-auto'>
+              <p className='mb-8 text-base lg:text-3xl leading-6 lg:leading-10 font-dmsans dark:text-white text-black/80'>
                 It is not just a shirt number, it is the prelude of a legacy, a celebration, an inspiration.</p>
               <button className='btn btn-primary-outline relative z-50'>Know More</button>
             </div>
           </div>
-          <div className='flex items-center gap-2  ax-center bottom-4'>
-            <span className='font-dmsans uppercase font-medium text-base tracking-[3px] dark:text-theme-main text-theme-red'>Scroll Down</span>
+          <div className='flex items-center gap-2  pointer-events-none fixed right-4 bottom-4 lg:right-1/2 lg:translate-x-1/2'>
+            <span className='font-dmsans uppercase font-medium text-base tracking-[3px] dark:text-theme-main text-theme-red lg:opacity-100 opacity-0'>Scroll Down</span>
             <span className='text-xl chevrondown dark:text-theme-main text-theme-red'>{icons.chevrondown}</span>
           </div>
 
