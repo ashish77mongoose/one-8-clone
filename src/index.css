@@ -71,5 +71,21 @@
     .text-shadow{
       text-shadow: 0 0 4px white;
     }
+    html.dark .world-swiper .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+      background:#FFC20E;
+    }
+    .world-swiper .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+      background:#E40A3E;
+    }
+   .world-swiper .swiper-pagination-progressbar{
+      top: unset !important;
+      bottom: 0 !important;
+      background: #333333;
+    }
+    .world-swiper .swiper-pagination-progressbar{
+      top: unset !important;
+      bottom: 0 !important;
+      background: #333333;
+    }
   
 }

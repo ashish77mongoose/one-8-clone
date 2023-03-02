@@ -6,10 +6,12 @@ import { navLinks } from './../utils/constants';
 import DarkLightMode from './DarkLightMode/DarkLightMode';
 gsap.registerPlugin(ScrollTrigger);
 const Navbar = () => {
+  const [mobileMenu,setMobileMenu]=useState(false);
+ 
   useLayoutEffect(() => {
     const mmNav = gsap.matchMedia();
     let ctxNav;
-    mmNav.add("(min-width: 800px)", () => {
+    mmNav.add("(min-width: 1024px)", () => {
       ctxNav = gsap.context((self) => {
         let navTl = gsap.timeline();
         ScrollTrigger.create({
@@ -28,6 +30,7 @@ const Navbar = () => {
     mmNav.add("(max-width: 480px)", () => {
       ctxNav = gsap.context((self) => {
         let navTl = gsap.timeline().reverse();
+       
         let lines=gsap.utils.toArray('.menu-btn div');
 
         navTl
@@ -41,15 +44,22 @@ const Navbar = () => {
           if (navTl.reversed()) {
             navTl.timeScale(4); 
             navTl.play();
+            setMobileMenu(true);
           }
           else{
             navTl.reverse();
+            setMobileMenu(false);
+
 
           }
          
         });
       });
       document.querySelector('.menu-btn').addEventListener("click", (e) => ctxNav.menuButtonClick(e));
+      document.querySelectorAll('.mobile-menu-btn').forEach((btn ,index)=>{
+        btn.addEventListener("click", (e) => ctxNav.menuButtonClick(e));
+      })
+    
      
 
     });
@@ -59,9 +69,13 @@ const Navbar = () => {
     };
 
   }, []);
+  const handleMobileMenu=()=>{
+    setMobileMenu(false);
+  }
 
   return (
-    <nav className='flex items-center justify-center py-2 fixed top-0 left-0 w-full z-50 dark:bg-black bg-theme-lightblue shadow-sm shadow-black/10 dark:shadow-white/20'>
+    <>
+    <nav className='flex items-center h-[53px] lg:h-auto justify-center py-2 fixed top-0 left-0 w-full z-50 dark:bg-black bg-theme-lightblue shadow-sm shadow-black/10 dark:shadow-white/20'>
       <div className="container flex justify-between items-center gap-8">
         <NavLink to='/' className={'font-auxbold logo  text-2xl lg:text-6xl leading-[1] font-bold text-theme-red dark:text-white/90 dark:hover:text-white duration-200 '}>Ashish</NavLink>
         <ul className='lg:flex hidden gap-8 flex-1 justify-end items-center'>
@@ -83,6 +97,21 @@ const Navbar = () => {
       </div>
 
     </nav>
+    {/* Mobile Navbar */}
+
+    <div className={`fixed top-[52px]  w-full h-full dark:bg-black bg-theme-lightblue transition-[left] duration-400  z-[50] ${mobileMenu?`left-0`:`-left-full`}`}>
+    <ul className='py-4'>
+          {navLinks.map((link, index) => (
+            <li key={index} onClick={handleMobileMenu}>
+              <NavLink to={link.path} className='mobile-menu-btn uppercase dark:hover:text-theme-main hover:text-theme-red duration-300 font-dmsans block font-semibold py-3 px-4 dark:text-white text-black/90'>{link.title}</NavLink>
+            </li>
+          ))}
+        </ul>
+
+    </div>
+
+
+    </>
   )
 }
 

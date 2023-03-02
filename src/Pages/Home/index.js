@@ -6,6 +6,8 @@ import HomePopup from '../../components/HomePopup';
 import { socialLinks } from '../../utils/constants';
 import { icons } from './../../utils/icons';
 import { useEffect } from 'react';
+import WorldSwiper from './../../components/WorldSwiper';
+import MediaSwiper from '../../components/MediaSwiper';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,15 +17,16 @@ const Home = () => {
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
     gsap.fromTo('.chevrondown', { y: -8 }, { y: 2, repeat: -1, yoyo: true, duration: 1 });
+    gsap.fromTo('.video-btn img', { rotate: 0 }, { rotate: 360, repeat: -1, duration: 15 });
+
     let ctx;
-    mm.add("(min-width: 800px)", () => {
+    mm.add("(min-width: 1024px)", () => {
       ctx = gsap.context((self) => {
         let videBtnTl = gsap.timeline({}).reverse();
         const video = document.querySelector('.video video');
         let textStrokeEffect = gsap.utils.toArray('.text-stroke-effect');
         let textwithOutStroke = gsap.utils.toArray('.text-without-stroke');
         
-        gsap.fromTo('.video-btn img', { rotate: 0 }, { rotate: 360, repeat: -1, duration: 15 });
         videBtnTl.to(textStrokeEffect[0], { y: "-100vh" }, 'upper')
           .to(textwithOutStroke[0], { y: "-100vh" }, 'upper')
           .to(textStrokeEffect[1], { y: "100vh" }, 'upper')
@@ -106,11 +109,10 @@ const Home = () => {
           .to('.world-section', { y: '-120vh', duration: 5 }, 'card')
           .to('.associations', { opacity: 1, pointerEvents: 'auto', duration: 0 }, '<1')
           .to(['header', '.strokes-section'], { opacity: 0, pointerEvents: 'none', duration: 0 }, '<0.5')
-          // .to('.associations',{opacity:1,duration:0},'<1.5')
           .to('.associations', { opacity: 0, pointerEvents: 'none', duration: 2 })
           .to('.media', { opacity: 1, pointerEvents: 'auto', duration: 1 })
           .from('.media .media-text', { xPercent: 100, duration: 1 }, '<')
-          .from('.media .grid > div', { yPercent: 60, duration: 1, opacity: 0, stagger: 0.8 })
+          .from('.media .grid-wrapper > div', { yPercent: 60, duration: 1, opacity: 0, stagger: 0.8 },'+=1')
           .to('.media', { y: '-120vh', duration: 3 })
           .to('.get-in-touch', { opacity: 1, pointerEvents: 'auto', duration: 2 }, '<')
 
@@ -132,9 +134,7 @@ const Home = () => {
   return (
     <>
       <div className='relative overflow-hidden home'>
-
-        <header className='flex items-center flex-col gap-2 relative lg:min-h-screen justify-center  overflow-hidden pt-20 z-[24]'>
-
+        <header className='flex items-center flex-col gap-2 relative lg:min-h-screen justify-center  overflow-hidden pt-20 lg:pb-0 pb-20 z-[24]'>
           <div className="container flex flex-col gap-2 relative z-[3] ">
             <div className='relative flex lg:gap-24 w-full justify-center lg:flex-row flex-col gap-2'>
               <div className='font-auxbold text-theme-red dark:text-theme-main uppercase text-5xl lg:text-9xl '>Web</div>
@@ -153,14 +153,14 @@ const Home = () => {
           </div>
 
         </header>
-        <section className='strokes-section min-h-screen lg:absolute   w-full left-0 top-0 flex flex-col justify-center items-center pt-20 z-[25]'>
-          <div className='text-stroke text-stroke-effect text-[18vh] leading-[1.1] font-auxbold pointer-events-none'>Be Ready</div>
-          <div className='text-[18vh] leading-[1.1] font-auxbold pointer-events-none text-without-stroke dark:text-white text-theme-red'>Be Ready</div>
-          <div className='text-[18vh] leading-[1.1] font-auxbold pointer-events-none text-without-stroke dark:text-white text-theme-red'>Be Better</div>
-          <div className='text-stroke text-stroke-effect text-[18vh] leading-[1.1] font-auxbold pointer-events-none '>Be Better</div>
-          <div className="video border dark:border-theme-main border-theme-red max-w-[1000px] h-[500px] w-full a-center z-[2] ">
+        <section className='strokes-section lg:min-h-screen lg:absolute  relative  w-full left-0 top-0 flex flex-col justify-center items-center pt-20 lg:pb-0 pb-20 z-[25]'>
+          <div className='text-stroke text-stroke-effect text-[8vh] lg:text-[18vh] leading-[1.1] font-auxbold pointer-events-none'>Be Ready</div>
+          <div className='text-[8vh] lg:text-[18vh] leading-[1.1] font-auxbold pointer-events-none text-without-stroke dark:text-white text-theme-red'>Be Ready</div>
+          <div className='text-[8vh] lg:text-[18vh] leading-[1.1] font-auxbold pointer-events-none text-without-stroke dark:text-white text-theme-red'>Be Better</div>
+          <div className='text-stroke text-stroke-effect text-[8vh] lg:text-[18vh] leading-[1.1] font-auxbold pointer-events-none '>Be Better</div>
+          <div className="video border dark:border-theme-main border-theme-red lg:max-w-[1000px] h-[350px]   lg:h-[500px] w-full a-center z-[2] ">
             <video poster='/img/video-img.jpg' muted src="/img/smoke.mp4" className='object-cover w-full h-full opacity-60'></video>
-            <div className='w-24 h-24 absolute -bottom-12 right-12 video-btn-wrapper'>
+            <div className='lg:w-24 lg:h-24 w-14 h-14 absolute -bottom-7 lg:-bottom-12 right-12 video-btn-wrapper'>
               <div className="video-btn w-full h-full rounded-full  center  cursor-pointer hover:scale-125 duration-150 relative z-[2]">
                 <img className='absolute-img hidden dark:block' src="/img/play-button.png" alt="play-button" />
                 <img className='absolute-img dark:hidden block' src="/img/play-button-light.png" alt="play-button" />
@@ -177,10 +177,15 @@ const Home = () => {
 
         <section className=" world-section  lg:translate-y-full lg:absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[28] pt-24">
           <div className="container">
-            <div className="uppercase text-[20vh] font-auxbold leading-[1.1] text-theme-red  dark:text-theme-main">World Of</div>
-            <div className="uppercase text-[20vh] font-auxbold leading-[1.1]  text-stroke text-fill-main ">Designs</div>
+            <div className="uppercase text-[44px] lg:text-[20vh] font-auxbold leading-[1.1] text-theme-red  dark:text-theme-main">World Of</div>
+            <div className="uppercase text-[44px] lg:text-[20vh] font-auxbold leading-[1.1]  text-stroke text-fill-main ">Designs</div>
           </div>
-          <div className="container world-design-bottom flex shadow-[0_-19px_37px_7px_rgba(255,255,255,0.8)] dark:shadow-[0_-19px_37px_7px_rgba(0,0,0,0.8)] relative z-10 -mt-12">
+          <div className="container shadow-[0_-19px_37px_7px_rgba(255,255,255,0.8)] dark:shadow-[0_-19px_37px_7px_rgba(0,0,0,0.8)] relative z-10 -mt-2 lg:-mt-12">
+
+           <div className='lg:hidden'> <WorldSwiper/></div>
+
+            {/* Desktop cards */}
+          <div className="world-design-bottom lg:flex hidden">
             {
               Array(5).fill('2').map((item, index) => (
                 <div className=" h-[60vh] transition-all cursor-pointer flex-1  world-cards duration-300  bg-[url('../public/img/virat-world.jpg')] flex flex-col justify-between  relative  group hover:flex-grow-[1.8] ease-in">
@@ -209,31 +214,34 @@ const Home = () => {
 
 
           </div>
-          <div className='bg-theme-red dark:bg-theme-main py-4 w-full flex justify-center gap-6 text-white dark:text-black items-center relative z-[11]'>
-            <span className='font-bold text-xl uppercase font-auxbold'>Launching Soon</span>
-            <span className='font-bold text-2xl'>|</span>
-            <span className='font-semibold text-lg'>Eyewear</span>
-            <span className='font-semibold text-lg'>|</span>
-            <span className='font-semibold text-lg'>Hair Care</span>
-            <span className='font-semibold text-lg'>|</span>
-            <span className='font-semibold text-lg'>Fitness Equipments</span>
+          </div>
+          <div className='bg-theme-red dark:bg-theme-main py-4 w-full flex lg:flex-row flex-col justify-center gap-2 lg:gap-6 text-white dark:text-black items-center relative z-[11]'>
+            <div> <span className='font-bold text-base lg:text-xl uppercase font-auxbold'>Launching Soon</span></div>
+           <div className='flex items-center gap-3 lg:gap-6'>
+            <span className='font-bold text-2xl lg:block hidden'>|</span>
+            <span className='font-semibold text-sm lg:text-lg'>Eyewear</span>
+            <span className='font-semibold text-sm lg:text-lg'>|</span>
+            <span className='font-semibold text-sm lg:text-lg'>Hair Care</span>
+            <span className='font-semibold text-sm lg:text-lg'>|</span>
+            <span className='font-semibold text-sm lg:text-lg'>Fitness Equipments</span>
+           </div>
 
           </div>
 
         </section>
-        <section className="associations lg:opacity-0   lg:absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[23] py-24 dark:bg-[url('../public/img/association.png')]">
+        <section className="associations lg:opacity-0   lg:absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  lg:min-h-screen z-[23] pt-20 lg:pb-24 lg:pt-24 dark:bg-[url('../public/img/association.png')]">
           <div className="container">
-            <div className="uppercase text-[20vh] font-auxbold leading-[1.1]  text-stroke text-center opacity-60 ">Associations</div>
-            <div className='flex gap-8 items-center mt-10'>
-              <div className='text-[8vh] text-black/80 dark:text-theme-main font-auxbold drop-shadow-md'>Portfolio</div>
-              <div className='h-[10vh] w-[2px] bg-black/30 dark:bg-white/80'></div>
-              <div className='text-[8vh] text-red-500  font-auxbold font-bold  relative leading-[1.1]'>Animated On
-                <span className='absolute top-full right-0 text-lg text-green-500 uppercase'>Gsap</span></div>
+            <div className="uppercase text-[35px] lg:text-[20vh] font-auxbold leading-[1.1]  text-stroke text-center opacity-60 ">Associations</div>
+            <div className='flex gap-2 lg:gap-8 items-center mt-2 lg:mt-10'>
+              <div className='lg:text-[8vh] text-[3vh] text-black/80 dark:text-theme-main font-auxbold drop-shadow-md'>Portfolio</div>
+              <div className='lg:h-[10vh] h-[3vh] w-[2px] bg-black/30 dark:bg-white/80'></div>
+              <div className='lg:text-[8vh] text-[3vh] text-red-500  font-auxbold font-bold  relative leading-[1.1]'>Animated On
+                <span className='absolute top-full right-0 text-sm lg:text-lg text-green-500 uppercase'>Gsap</span></div>
 
 
             </div>
             <div className='  w-full max-w-[525px] my-8 '>
-              <p className='mb-8 text-3xl leading-10 font-dmsans dark:text-white text-black/80'>
+              <p className='mb-8 text-base leading-6 lg:text-3xl lg:leading-10 font-dmsans dark:text-white text-black/80'>
                 Shifting our gears to reach a advanced animation on full throttle.</p>
               <button className='btn btn-primary-outline'>Know More</button>
             </div>
@@ -241,10 +249,13 @@ const Home = () => {
 
 
         </section>
-        <section className="media  lg:opacity-0  lg:absolute  top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[22] py-24 ">
+        <section className="media  lg:opacity-0  lg:absolute  top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  lg:min-h-screen z-[22] py-20 lg:py-24 ">
           <div className="container">
-            <div className="uppercase text-[18vh] font-auxbold leading-[1.1] text-theme-red  dark:text-theme-main media-text">Media Vault</div>
-            <div className='grid grid-cols-3 gap-10 py-6'>
+            <div className="uppercase text-[40px] lg:text-[18vh] font-auxbold leading-[1.1] text-theme-red  dark:text-theme-main media-text">Media Vault</div>
+            <div className='lg:hidden block py-6'>
+              <MediaSwiper/>
+            </div>
+            <div className='grid-cols-3 gap-10 py-6 lg:grid hidden grid-wrapper'>
               {
                 Array(3).fill('2').map((media, index) => (
                   <div className='w-full'>
@@ -270,12 +281,12 @@ const Home = () => {
 
 
         </section>
-        <section className="get-in-touch lg:opacity-0    lg:absolute top-0 left-0 w-full  bg-theme-red dark:bg-theme-main  min-h-screen z-[21] pt-28 ">
+        <section className="get-in-touch lg:opacity-0    lg:absolute top-0 left-0 w-full  bg-theme-red dark:bg-theme-main  lg:min-h-screen z-[21] py-16 lg:pt-28 ">
           <div className="container">
-            <div className="uppercase text-[24vh] dark:get-text-stroke  font-auxbold leading-[1.1]  ">Get</div>
-            <div className="uppercase text-[24vh] dark:get-text-stroke font-auxbold leading-[1.1]  ">in Touch</div>
+            <div className="uppercase text-[44px] lg:text-[24vh] dark:get-text-stroke  font-auxbold leading-[1.1]  ">Get</div>
+            <div className="uppercase text-[44px] lg:text-[24vh] dark:get-text-stroke font-auxbold leading-[1.1]  ">in Touch</div>
             <div className='mt-6'>
-              <div className='dark:text-black text-white font-bold text-4xl dark:text-shadow'>
+              <div className='dark:text-black text-white font-semibold lg:font-bold text-base lg:text-4xl dark:text-shadow'>
                 ashish77uab@gmail.com
               </div>
               <div className="flex gap-4 mt-6">

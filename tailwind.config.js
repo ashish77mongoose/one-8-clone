@@ -8,7 +8,8 @@ module.exports = {
        theme:{
           main:'#FFC20E',
           lightblue:'#E6EFFC',
-          red:'#E40A3E'
+          red:'#E40A3E',
+          gray:'#333333'
        }
       },
       fontFamily: {
