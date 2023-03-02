@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+@font-face {
+    font-family: 'Aux_bold';
+    src: url('../public/fonts/Aux-Bold.woff')
+} 
+@layer base{
+    body{
+        @apply font-manrope dark:bg-black bg-theme-lightblue text-white overflow-x-hidden;
+    }
+}
+@layer components{
+  .box-pack{
+    -webkit-box-pack: center;
+  }
+    .center {
+        @apply flex justify-center items-center;
+      }
+    .ax-center {
+        @apply absolute left-1/2 -translate-x-1/2;
+      }
+    
+      .ay-center {
+        @apply absolute top-1/2 -translate-y-1/2;
+      }
+    
+      .a-center {
+        @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+      }
+    
+      .absolute-img {
+        @apply inset-0 w-full h-full object-cover;
+      }
+    .btn{
+        @apply px-6 py-2 text-base font-manrope font-semibold dark:text-white text-black/90 cursor-pointer  ;
+    }
+    .btn-primary-outline{
+        @apply border-2 dark:border-white border-black/80 rounded-md dark:hover:bg-white dark:hover:text-black/80 ;
+    }
+    .btn-primary{
+        @apply  bg-black text-white ;
+    }
+    .text-stroke{
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color:#E40A3E ;
+        -webkit-text-fill-color: transparent;
+    }
+    html.dark  .text-stroke{
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: white;
+      -webkit-text-fill-color: transparent;
+  }
+  .text-fill-main{
+    -webkit-text-stroke-color: #E40A3E;
+
+}
+.get-text-stroke{
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: white;
+  -webkit-text-fill-color: transparent;
+}
+    
+  html.dark .text-fill-main{
+        -webkit-text-stroke-color: #FFC20E;
+
+    }
+    .text-shadow{
+      text-shadow: 0 0 4px white;
+    }
+  
+}
