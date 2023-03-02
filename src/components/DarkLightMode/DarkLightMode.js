@@ -52,10 +52,10 @@ export default function DarkLightMode() {
       id="theme-toggle"
       onClick={handleMode}
       type="button"
-      className="ml-6 text-gray-800 bg-white border border-gray-100 dark:border-gray-800 dark:bg-transparent dark:text-gray-500 focus:outline-none focus:ring-0 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+      className="ml-6 text-gray-800 bg-white border border-gray-100 dark:border-gray-800 dark:bg-transparent dark:text-gray-500 focus:outline-none focus:ring-0 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 lg:p-2.5"
     >
 
-      {mode==='light'? <span className="text-xl">{icons.light}</span>:<span className="text-xl">{icons.dark}</span>}
+      {mode==='light'? <span className="text-lg lg:text-xl">{icons.light}</span>:<span className="text-lg lg:text-xl">{icons.dark}</span>}
 
       
     </button>
