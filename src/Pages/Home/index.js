@@ -80,7 +80,7 @@ const Home = () => {
         ScrollTrigger.create({
           trigger: ".home",
           start: "top top",
-          end: "+=5000",
+          end: "+=9000",
           pin: true,
           scrub: 1,
           animation: tl
@@ -122,12 +122,12 @@ const Home = () => {
     };
 
   }, [mode]);
-  useEffect(() => {
-    // setTimeout(() => {
-    //   setPopup(false);
-    // }, 2000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPopup(true);
+  //   }, 2000)
 
-  }, [])
+  // }, [])
   return (
     <>
       <div className='relative overflow-hidden home'>
@@ -152,7 +152,7 @@ const Home = () => {
           </div>
 
         </header>
-        <section className='strokes-section min-h-screen absolute   w-full left-0 top-0 flex flex-col justify-center items-center pt-20 z-[25]'>
+        <section className='strokes-section min-h-screen lg:absolute   w-full left-0 top-0 flex flex-col justify-center items-center pt-20 z-[25]'>
           <div className='text-stroke text-stroke-effect text-[18vh] leading-[1.1] font-auxbold pointer-events-none'>Be Ready</div>
           <div className='text-[18vh] leading-[1.1] font-auxbold pointer-events-none text-without-stroke dark:text-white text-theme-red'>Be Ready</div>
           <div className='text-[18vh] leading-[1.1] font-auxbold pointer-events-none text-without-stroke dark:text-white text-theme-red'>Be Better</div>
@@ -174,7 +174,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className=" world-section   translate-y-full absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[28] pt-24">
+        <section className=" world-section  lg:translate-y-full lg:absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[28] pt-24">
           <div className="container">
             <div className="uppercase text-[20vh] font-auxbold leading-[1.1] text-theme-red  dark:text-theme-main">World Of</div>
             <div className="uppercase text-[20vh] font-auxbold leading-[1.1]  text-stroke text-fill-main ">Designs</div>
@@ -220,7 +220,7 @@ const Home = () => {
           </div>
 
         </section>
-        <section className="associations opacity-0   absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[23] py-24 dark:bg-[url('../public/img/association.png')]">
+        <section className="associations lg:opacity-0   lg:absolute top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[23] py-24 dark:bg-[url('../public/img/association.png')]">
           <div className="container">
             <div className="uppercase text-[20vh] font-auxbold leading-[1.1]  text-stroke text-center opacity-60 ">Associations</div>
             <div className='flex gap-8 items-center mt-10'>
@@ -240,7 +240,7 @@ const Home = () => {
 
 
         </section>
-        <section className="media absolute opacity-0    top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[22] py-24 ">
+        <section className="media  lg:opacity-0  lg:absolute  top-0 left-0 w-full  bg-theme-lightblue dark:bg-black  min-h-screen z-[22] py-24 ">
           <div className="container">
             <div className="uppercase text-[18vh] font-auxbold leading-[1.1] text-theme-red  dark:text-theme-main media-text">Media Vault</div>
             <div className='grid grid-cols-3 gap-10 py-6'>
@@ -269,7 +269,7 @@ const Home = () => {
 
 
         </section>
-        <section className="get-in-touch opacity-0    absolute top-0 left-0 w-full  bg-theme-red dark:bg-theme-main  min-h-screen z-[21] pt-28 ">
+        <section className="get-in-touch lg:opacity-0    lg:absolute top-0 left-0 w-full  bg-theme-red dark:bg-theme-main  min-h-screen z-[21] pt-28 ">
           <div className="container">
             <div className="uppercase text-[24vh] dark:get-text-stroke  font-auxbold leading-[1.1]  ">Get</div>
             <div className="uppercase text-[24vh] dark:get-text-stroke font-auxbold leading-[1.1]  ">in Touch</div>
