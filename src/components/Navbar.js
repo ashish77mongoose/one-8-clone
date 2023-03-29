@@ -75,7 +75,7 @@ const Navbar = () => {
 
   return (
     <>
-    <nav className='flex items-center h-[53px] lg:h-auto justify-center py-2 fixed top-0 left-0 w-full z-50 dark:bg-black bg-theme-lightblue shadow-sm shadow-black/10 dark:shadow-white/20'>
+    <nav className='flex items-center h-[53px] lg:h-auto justify-center py-2 fixed top-0 left-0 w-full z-[500] dark:bg-black bg-theme-lightblue shadow-sm shadow-black/10 dark:shadow-white/20'>
       <div className="container flex justify-between items-center gap-8">
         <NavLink to='/' className={'font-auxbold logo  text-2xl lg:text-6xl leading-[1] font-bold text-theme-red dark:text-white/90 dark:hover:text-white duration-200 '}>Ashish</NavLink>
         <ul className='lg:flex hidden gap-8 flex-1 justify-end items-center'>

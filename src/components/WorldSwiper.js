@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import {socialLinks} from '../utils/constants'
+import {socialLinks, worldDesigns} from '../utils/constants'
 // import required modules
 import { Pagination } from "swiper";
 const WorldSwiper = () => {
@@ -23,11 +23,11 @@ const WorldSwiper = () => {
         className="world-swiper"
       >
          {
-              Array(5).fill('2').map((item, index) => (
-                <SwiperSlide className="!h-[75vh] transition-all cursor-pointer  world-cards duration-300  bg-[url('../public/img/virat-world.jpg')]   relative  ease-in">
-                  <div className='absolute top-0 left-0 bg-black opacity-50 w-full h-full'></div>
+              worldDesigns.map((item, index) => (
+                <SwiperSlide style={{backgroundImage:`url(${item.path})`}} className="!h-[75vh] bg-cover bg-no-repeat bg-center transition-all cursor-pointer  world-cards duration-300  bg-[url('../public/img/virat-world.jpg')]   relative  ease-in">
+                  <div className='absolute top-0 left-0 bg-black opacity-50 w-full h-full '></div>
                   <div className='flex justify-between py-4 lg:py-5 px-3 lg:px-4 items-center relative z-10'>
-                    <span className='font-bold font-dmsans text-lg lg:text-xl'>Athleisure</span>
+                    <span className='font-bold font-dmsans text-lg lg:text-xl'>{item.title}</span>
                     <span className='font-bold  uppercase font-dmsans text-[12px] lg:text-sm  duration-200 underline underline-offset-8 cursor-pointer'>Know More</span>
                   </div>
                   <div className='flex lg:flex-row flex-col z-10 justify-center items-center gap-2 lg:gap-4 py-5 px-3 lg:px-4  ease-out  bottom-4 ax-center w-full'>
